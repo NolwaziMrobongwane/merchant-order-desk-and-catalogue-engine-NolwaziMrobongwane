@@ -1,70 +1,98 @@
-# PayNest Merchant Order Desk and Catalogue Engine
+PayNest Merchant Order Desk and Catalogue Engine
+Project Description
+PayNest is a Java console application developed to help small merchants manage customers, products and orders.
 
-## Project Description
+The application creates customer-linked orders, calculates individual item subtotals and overall order totals, and prints a receipt in South African Rand.
 
-PayNest is a simple Java application for managing customers, products and orders.
+It demonstrates object-oriented programming, input validation, accurate monetary calculations and separation of responsibilities.
 
-The application allows a customer to place an order containing one or more products. Each product is represented by an OrderItem, which stores the product and quantity purchased.
+Technologies Used
+Java 21
+Apache Maven
+JUnit 5
+BigDecimal for monetary calculations
+Project Structure
+The application follows a simple object-oriented design using three packages:
 
-The application calculates individual item totals and the overall order total and can print a formatted receipt.
+Domain (com.paynestsystem.domain)
 
-## Project Structure
+Customer stores customer information.
+Product represents catalogue products and their prices.
+OrderItem links a product to a quantity and calculates its subtotal.
+Order manages order items and calculates the grand total.
+Service (com.paynestsystem.service)
 
-The application uses a simple object-oriented design:
+OrderService creates orders and coordinates receipt printing.
+ReceiptPrinter displays customer details, purchased items and formatted totals.
+Application (com.paynestsystem.app)
 
-- `Customer` stores customer information.
-- `Product` stores catalogue product information.
-- `OrderItem` represents a product and its quantity in an order.
-- `Order` represents a customer's order and calculates the order total.
-- `OrderService` provides order-related service operations.
-- `ReceiptPrinter` is responsible for displaying the receipt.
-- `PayNestApplication` contains the application's entry point.
+PayNestApplication contains the main method and demonstrates the complete ordering process.
+Business Rules
+Customer, product and order IDs must be positive.
+Customer names, email addresses and product names cannot be blank.
+Product prices cannot be null or negative.
+Orders must have a valid customer.
+Products cannot be null when added to orders.
+Product quantities must be positive integers.
+Empty orders have a total of zero.
+Monetary calculations use BigDecimal.
+Receipts display amounts in South African Rand with two decimal places.
+Design Decisions
+Accurate calculations: BigDecimal avoids floating-point precision problems. Line subtotals are calculated by multiplying the unit price by the quantity. The order total is the sum of all line subtotals.
 
-## Business Rules
+Encapsulation: Domain fields are private. The order item collection is exposed through an unmodifiable list to prevent external modification.
 
-1. Customer IDs must be positive.
-2. Customer names cannot be empty.
-3. Customer email addresses cannot be empty.
-4. Product IDs must be positive.
-5. Product names cannot be empty.
-6. Product prices cannot be negative.
-7. An Order requires a customer.
-8. Order IDs must be positive.
-9. Product quantities must be greater than zero.
-10. A product cannot be null when adding an item to an order.
-11. An empty order has a total of R0.00.
-12. Money is represented using `BigDecimal` to avoid floating-point calculation problems.
-13. South African Rand currency formatting is used for receipts.
+Separation of responsibilities: Domain classes manage business data and calculations. OrderService coordinates order operations, while ReceiptPrinter handles console output.
 
-## Design Decisions
+Extensibility: Products are represented as independent objects, allowing the catalogue to grow without changing the order calculation logic.
 
-### BigDecimal for Money
-
-`BigDecimal` is used instead of `double` for monetary values because financial calculations require accurate decimal arithmetic.
-
-### Encapsulation
-
-The fields in the domain classes are private and accessed through methods.
-
-The order item collection is exposed as an unmodifiable list so that external code cannot directly modify the internal collection.
-
-### Separation of Responsibilities
-
-The domain classes are responsible for representing and calculating business data.
-
-`ReceiptPrinter` is responsible for presentation of the receipt rather than placing console output inside the domain model.
-
-This separation makes the application easier to maintain and extend.
-
-### Extending the Catalogue
-
-Products are represented as separate objects rather than being hard-coded into the Order class.
-
-This means additional products can be added to the catalogue without changing the Order structure.
-
-## How to Build
+How to Build and Test
+Ensure Java 21 and Apache Maven are installed.
 
 From the project root, run:
 
-```bash
 mvn clean test
+This command compiles the application and runs the JUnit tests.
+
+Verification note: Maven test execution is currently blocked in the development environment by an SSL certificate validation error (PKIX path building failed) when downloading Maven plugins. Successful execution of the full Maven test suite has therefore not yet been confirmed.
+
+How to Run
+Compile the application:
+
+mvn compile
+Run the main class using Java:
+
+java -cp target/classes com.paynestsystem.app.PayNestApplication
+These commands require Maven dependencies and plugins to be available. Alternatively, run PayNestApplication.main() directly from IntelliJ IDEA.
+
+Example Receipt
+The sample application creates an order containing one laptop and two mice.
+
+======== PAYNEST RECEIPT ========
+Order #: 1001
+Customer: Nolwazi
+Email: nolwazi.mrobongwane@umuzi.org
+--------------------------------------
+Laptop x 1 = R12,000.00
+Mouse x 2 = R500.00
+--------------------------------------
+Total: R12,500.00
+===================================
+Illustrative output. Exact currency spacing and separators may vary depending on Java’s locale formatting.
+
+Testing
+JUnit 5 tests cover:
+
+Order item subtotal calculations
+Grand total calculations
+Empty orders
+Zero and negative quantities
+Null products and customers
+Decimal-price calculations
+Large-quantity calculations
+Receipt content and validation
+Future Improvements
+Potential enhancements include persistent product storage, order status tracking, inventory management and payment integration.
+
+Author:
+Nolwazi Mrobongwane
