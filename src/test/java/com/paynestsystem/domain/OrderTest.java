@@ -123,3 +123,45 @@ IllegalArgumentException.class,
 );
 }
 }
+
+//Checks that monetary calculations remain accurate with cents
+@Test
+void shouldCalculateTotalWithDecimalPrices() {
+
+    Product product = new Product(
+            1, "USB Cable", new BigDecimal("19.99")
+    );
+
+    Customer customer = new Customer(
+            1, "Nolwazi", "nolwazi.mrobongwane@umuzi.org"
+    );
+
+    Order order = new Order(1002, customer);
+    order.addItem(product, 3);
+
+    assertEquals(
+            new BigDecimal("59.97"),
+            order.calculateTotal()
+    );
+}
+
+//Checks that app calculayes totals correctly when a customer orders many units
+@Test
+void shouldCalculateTotalForLargeQuantity() {
+
+    Product product = new Product(
+            1, "Mouse", new BigDecimal("250.00")
+    );
+
+    Customer customer = new Customer(
+            1, "Nolwazi", "nolwazi.mrobongwane@umuzi.org"
+    );
+
+    Order order = new Order(1003, customer);
+    order.addItem(product, 10000);
+
+    assertEquals(
+            new BigDecimal("2500000.00"),
+            order.calculateTotal()
+    );
+}

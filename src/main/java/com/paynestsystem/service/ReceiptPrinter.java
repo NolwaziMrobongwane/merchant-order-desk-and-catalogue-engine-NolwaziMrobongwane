@@ -13,8 +13,11 @@ public class ReceiptPrinter {
             throw new IllegalArgumentException("Order cannot be null.");
         }
 
-        Locale locale = Locale.of("en", "ZA");
-        NumberFormat currency = NumberFormat.getCurrencyInstance(locale);
+        Locale locale = Locale.forLanguageTag("en-ZA");
+        NumberFormat currency =  NumberFormat.getCurrencyInstance(locale);
+
+        currency.setMinimumFractionDigits(2);
+        currency.setMaximumFractionDigits(2);
         
         System.out.println("======== PAYNEST RECEIPT ========");
         System.out.println("Order #: " + order.getId());
