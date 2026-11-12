@@ -122,7 +122,6 @@ IllegalArgumentException.class,
 () -> new Order(1001, null)
 );
 }
-}
 
 //Checks that monetary calculations remain accurate with cents
 @Test
@@ -164,4 +163,5 @@ void shouldCalculateTotalForLargeQuantity() {
             new BigDecimal("2500000.00"),
             order.calculateTotal()
     );
+}
 }
