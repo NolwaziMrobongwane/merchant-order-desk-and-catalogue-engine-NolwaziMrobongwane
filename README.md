@@ -106,7 +106,7 @@ Ensure Java 21 and Apache Maven are installed.
 From the project root, run:
 
 mvn clean test
-This command compiles the project and runs the JUnit tests when Maven dependencies are available.
+*This command compiles the project and runs the JUnit tests when Maven dependencies are available.*
 
 Test verification:
 - The project was successfully built and tested using Apache Maven. All 17 automated tests passed with 0 failures, 0 errors and 0 skipped tests.
