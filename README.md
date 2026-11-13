@@ -108,7 +108,9 @@ From the project root, run:
 mvn clean test
 This command compiles the project and runs the JUnit tests when Maven dependencies are available.
 
-Test verification: All 17 automated tests passed using IntelliJ IDEA’s JUnit test runner. Maven command-line testing was previously blocked by an SSL certificate verification error (PKIX path building failed), so a successful Maven test run has not yet been confirmed.
+Test verification:
+- The project was successfully built and tested using Apache Maven. All 17 automated tests passed with 0 failures, 0 errors and 0 skipped tests.
+- The Maven build completed successfully.
 
 ### How to Run
 From the project root:
