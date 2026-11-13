@@ -64,10 +64,18 @@ PaymentProcessor --> PaymentMethod : uses
 ## Multiple Payment Methods
 PayNest supports three simulated payment methods:
 
-Card
-EFT
-Wallet
+- Card
+  Card Transaction Limit
+  Card payments have a transaction limit of R10,000. Payments exceeding this limit are declined and return false.
+- EFT
+  EFT payments do not have this simulated transaction limit.
+- Wallet
+### Wallet Balance Protection
+Wallet payments are declined when the available balance is insufficient. Declined payments do not deduct funds or change the wallet balance.
+Successful payments deduct the transaction amount from the available balance.
+
 All three implement the PaymentMethod interface.
+
 ### Wallet Balance Validation
 Unlike Card and EFT payments, Wallet payments have an additional business rule.
 
@@ -126,7 +134,7 @@ mvn clean test
 *This command compiles the project and runs the JUnit tests when Maven dependencies are available.*
 
 Test verification:
-- The project was successfully built and tested using Apache Maven. All 17 automated tests passed with 0 failures, 0 errors and 0 skipped tests.
+- The project was successfully built and tested using Apache Maven. All 21 automated tests passed with 0 failures, 0 errors and 0 skipped tests.
 - The Maven build completed successfully.
 
 ### How to Run
@@ -184,13 +192,15 @@ The project contains tests covering:
 - Invalid quantities and null references
 - Decimal prices and large quantities
 - Receipt content and currency formatting
-- Card, EFT and Wallet payment processing
+- Card, EFT and Wallet payment processing.
 - Invalid payment methods and payment amounts
 - OrderService checkout integration
 - Insufficient wallet balance returning false during payment processing.
 - Unsuccessful order checkout when the wallet cannot cover order total.
+- Card payments exceeding the R10,000 transaction limit are declined.
+- Declined wallet payments leave the wallet balance unchanged.
 
-*Latest IntelliJ test result: 19 tests passed, 0 failed.*
+*Latest IntelliJ test result: 21 tests passed, 0 failed, 0 errors and 0 skiped. BUILD SUCCESS*
 
 ## Future Improvements
 Potential enhancements include persistent order storage, inventory management, real payment gateway integrations, transaction references and more detailed payment status tracking.

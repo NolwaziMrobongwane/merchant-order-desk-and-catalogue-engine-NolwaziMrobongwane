@@ -4,6 +4,7 @@ import com.paynestsystem.domain.Customer;
 import com.paynestsystem.domain.Order;
 import com.paynestsystem.domain.Product;
 import com.paynestsystem.payment.CardPayment;
+import com.paynestsystem.payment.EftPayment;
 import com.paynestsystem.payment.PaymentProcessor;
 
 import com.paynestsystem.payment.WalletPayment;
@@ -46,7 +47,7 @@ public class OrderServiceTest {
         );
 
         assertTrue(
-                orderService.checkout(order, new CardPayment())
+                orderService.checkout(order, new EftPayment())
         );
     }
     //Test unsuccessful checkout

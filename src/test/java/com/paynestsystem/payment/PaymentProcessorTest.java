@@ -85,6 +85,30 @@ public class PaymentProcessorTest {
         );
         assertFalse(result);
     }
+
+    //Add card limit test
+    @Test
+    void shouldDeclineCardPaymentAboveLimit() {
+        boolean result = processor.processPayment(
+                new CardPayment(),
+                new BigDecimal("12500.00")
+        );
+        assertFalse(result);
+    }
+
+    //Add a test that a declined wallet payment leaves the balance unchanged
+    @Test
+    void shouldKeepWalletBalanceUnchangedAfterDeclinedPayment() {
+        WalletPayment walletPayment = new WalletPayment(
+                new BigDecimal("500.00")
+        );
+        boolean result = processor.processPayment(
+                walletPayment,
+                new BigDecimal("12500.00")
+        );
+        assertFalse(result);
+        assertEquals(new BigDecimal("500.00"), walletPayment.getBalance());
+    }
 }
 
 

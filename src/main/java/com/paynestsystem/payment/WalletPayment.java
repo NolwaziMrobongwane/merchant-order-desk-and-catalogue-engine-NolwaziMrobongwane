@@ -33,4 +33,8 @@ public class WalletPayment implements PaymentMethod {
     public String getPaymentType() {
         return "Wallet Payment";
     }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
 }
