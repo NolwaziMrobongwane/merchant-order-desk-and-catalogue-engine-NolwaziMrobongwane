@@ -1,4 +1,4 @@
-### PayNest Merchant Order Desk and Catalogue Engine
+# PayNest Merchant Order Desk and Catalogue Engine
 ## Project Description
 PayNest is a Java console application designed to demonstrate customer, product, order and payment management.
 
@@ -16,7 +16,7 @@ IntelliJ IDEA
 ## Project Structure
 The application is organised into four packages.
 
-# Domain —
+### Domain —
 com.paynestsystem.domain
 Customer — stores customer details.
 Product — represents products and prices.
@@ -27,7 +27,7 @@ com.paynestsystem.service
 OrderService — creates orders, coordinates receipt printing and manages checkout.
 ReceiptPrinter — displays formatted order receipts.
 
-# Payment —
+### Payment —
 com.paynestsystem.payment
 PaymentMethod — interface defining common payment operations.
 CardPayment — simulates card payments.
