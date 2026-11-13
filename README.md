@@ -105,7 +105,9 @@ Ensure Java 21 and Apache Maven are installed.
 
 From the project root, run:
 
+```bash
 mvn clean test
+```
 *This command compiles the project and runs the JUnit tests when Maven dependencies are available.*
 
 Test verification:
@@ -115,9 +117,11 @@ Test verification:
 ### How to Run
 From the project root:
 
+```bash
 mvn compile
 java -cp target/classes com.paynestsystem.app.PayNestApplication
-Alternatively, open PayNestApplication.java in IntelliJ IDEA and run its main() method.
+```
+*Alternatively, open PayNestApplication.java in IntelliJ IDEA and run its main() method.*
 
 The sample application creates an order and processes payment using the selected payment method.
 
