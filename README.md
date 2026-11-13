@@ -119,7 +119,10 @@ Alternatively, open PayNestApplication.java in IntelliJ IDEA and run its main() 
 
 The sample application creates an order and processes payment using the selected payment method.
 
-Example Output
+## Example Output
+
+The following is an example of the application output:
+```text
 ======== PAYNEST RECEIPT ========
 Order #: 1001
 Customer: Nolwazi
@@ -134,33 +137,36 @@ Processing Card Payment for R12500.00
 Payment successful via Card Payment
 Amount: R12500.00
 Order #1001 has been processed successfully.
-Example output based on the application demonstration. Currency spacing and separators depend on the Java formatting configuration.
+```
+
+*Currency spacing and separators depend on the Java formatting configuration.*
 
 ## Demonstrating the Payment Methods
 To demonstrate the application’s payment functionality:
 
-Open PayNestApplication.java in IntelliJ IDEA.
-Run the main() method to create a sample customer order and display its receipt.
-Locate the payment method selected in the checkout code.
-Select CardPayment and run the application. Confirm that the card payment is processed successfully.
-Change the selected payment method to EftPayment and run the application again.
-Repeat the demonstration using WalletPayment.
-Verify that each payment method processes the same order total and displays the appropriate payment confirmation.
-The demonstration shows how different payment implementations can be used through the same interface without changing the existing order calculation logic.
-All payment methods are simulated; no real transactions take place.
+- Open PayNestApplication.java in IntelliJ IDEA.
+- Run the main() method to create a sample customer order and display its receipt.
+- Locate the payment method selected in the checkout code.
+- Select CardPayment and run the application. Confirm that the card payment is processed successfully.
+- Change the selected payment method to EftPayment and run the application again.
+- Repeat the demonstration using WalletPayment.
+- Verify that each payment method processes the same order total and displays the appropriate payment confirmation.
+- The demonstration shows how different payment implementations can be used through the same interface without changing the existing order calculation logic.
+*All payment methods are simulated; no real transactions take place.*
 
 ## Automated Testing
 The project contains tests covering:
 
-Order item and grand total calculations
-Empty orders
-Invalid quantities and null references
-Decimal prices and large quantities
-Receipt content and currency formatting
-Card, EFT and Wallet payment processing
-Invalid payment methods and payment amounts
-OrderService checkout integration
-Latest IntelliJ test result: 17 tests passed, 0 failed.
+- Order item and grand total calculations
+- Empty orders
+- Invalid quantities and null references
+- Decimal prices and large quantities
+- Receipt content and currency formatting
+- Card, EFT and Wallet payment processing
+- Invalid payment methods and payment amounts
+- OrderService checkout integration
+
+*Latest IntelliJ test result: 17 tests passed, 0 failed.*
 
 ## Future Improvements
 Potential enhancements include persistent order storage, inventory management, real payment gateway integrations, transaction references and more detailed payment status tracking.
