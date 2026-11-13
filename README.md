@@ -7,11 +7,11 @@ The application allows merchants to create customer orders, calculate totals acc
 The project combines object-oriented programming, interfaces, polymorphism, validation and automated testing.
 
 ## Technologies Used
-Java 21
-Apache Maven
-JUnit 5
-BigDecimal for monetary calculations
-IntelliJ IDEA
+- Java 21
+- Apache Maven
+- JUnit 5
+- BigDecimal for monetary calculations
+- IntelliJ IDEA
 
 ## Project Structure
 The application is organised into four packages.
