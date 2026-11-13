@@ -152,6 +152,7 @@ To demonstrate the application’s payment functionality:
 - Repeat the demonstration using WalletPayment.
 - Verify that each payment method processes the same order total and displays the appropriate payment confirmation.
 - The demonstration shows how different payment implementations can be used through the same interface without changing the existing order calculation logic.
+
 *All payment methods are simulated; no real transactions take place.*
 
 ## Automated Testing
