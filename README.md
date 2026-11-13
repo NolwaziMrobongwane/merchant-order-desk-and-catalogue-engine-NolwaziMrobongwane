@@ -31,7 +31,7 @@ com.paynestsystem.payment
 - PaymentMethod — interface defining common payment operations.
 - CardPayment — simulates card payments.
 - EftPayment — simulates electronic funds transfer payments.
-- WalletPayment — simulates wallet payments.
+- WalletPayment — simulates wallet payments using an available balance. Payments are declined when the amount exceeds the balance, while successful payments deduct the amount from the wallet.
 - PaymentProcessor — processes payments through the selected payment method.
 ### Application —
 com.paynestsystem.app
@@ -68,6 +68,15 @@ Card
 EFT
 Wallet
 All three implement the PaymentMethod interface.
+### Wallet Balance Validation
+Unlike Card and EFT payments, Wallet payments have an additional business rule.
+
+- Each wallet has an available balance.
+- Payments exceeding the available balance are declined and return false.
+- Successful payments deduct the amount from the wallet balance.
+- Wallet balances cannot be negative.
+- A wallet with a zero balance is valid but cannot process a positive payment.
+- This demonstrates how different payment methods can implement their own business rules while sharing the same PaymentMethod interface.
 
 The PaymentProcessor accepts any implementation of this interface, demonstrating polymorphism without requiring separate checkout logic for each payment type.
 
@@ -78,6 +87,12 @@ The application then displays whether payment processing succeeded or failed.
 
 ## Validation
 The application validates customer, product and order information, including positive IDs, nonblank required fields and valid quantities.
+### Shared Payment Validation:
+Payment amount validation is centralised in the PaymentMethod interface through the ```text validateAmount()``` default method.
+
+This allows Card, EFT, Wallet and PaymentProcessor to reuse the same validation logic instead of repeating it in multiple classes. The method rejects null, zero and negative payment amounts.
+
+Individual payment methods can still apply additional rules, such as the wallet’s insufficient-balance check.
 
 Payment processing rejects null payment methods and amounts that are zero or negative.
 
@@ -172,8 +187,10 @@ The project contains tests covering:
 - Card, EFT and Wallet payment processing
 - Invalid payment methods and payment amounts
 - OrderService checkout integration
+- Insufficient wallet balance returning false during payment processing.
+- Unsuccessful order checkout when the wallet cannot cover order total.
 
-*Latest IntelliJ test result: 17 tests passed, 0 failed.*
+*Latest IntelliJ test result: 19 tests passed, 0 failed.*
 
 ## Future Improvements
 Potential enhancements include persistent order storage, inventory management, real payment gateway integrations, transaction references and more detailed payment status tracking.
