@@ -18,26 +18,25 @@ The application is organised into four packages.
 
 ### Domain —
 com.paynestsystem.domain
-Customer — stores customer details.
-Product — represents products and prices.
-OrderItem — stores a purchased product and quantity.
-Order — manages order items and calculates totals.
-Service —
+- Customer — stores customer details.
+- Product — represents products and prices.
+- OrderItem — stores a purchased product and quantity.
+- Order — manages order items and calculates totals.
+### Service —
 com.paynestsystem.service
-OrderService — creates orders, coordinates receipt printing and manages checkout.
-ReceiptPrinter — displays formatted order receipts.
-
+- OrderService — creates orders, coordinates receipt printing and manages checkout. 
+- ReceiptPrinter — displays formatted order receipts.
 ### Payment —
 com.paynestsystem.payment
-PaymentMethod — interface defining common payment operations.
-CardPayment — simulates card payments.
-EftPayment — simulates electronic funds transfer payments.
-WalletPayment — simulates wallet payments.
-PaymentProcessor — processes payments through the selected payment method.
-Application —
+- PaymentMethod — interface defining common payment operations.
+- CardPayment — simulates card payments.
+- EftPayment — simulates electronic funds transfer payments.
+- WalletPayment — simulates wallet payments.
+- PaymentProcessor — processes payments through the selected payment method.
+### Application —
 com.paynestsystem.app
-PayNestApplication — demonstrates the ordering and checkout process.
-Key Features
+- PayNestApplication — demonstrates the ordering and checkout process.
+### Key Features
 Order Management
 Customers can have orders containing multiple products. Each item’s subtotal is calculated using its price and quantity, and the subtotals are added to determine the order total.
 
