@@ -46,7 +46,7 @@ public class OrderService {
             System.out.println("Order #" + order.getId() + " has been processed successfully.");
         }
         else  {
-            System.out.println("Order #" + order.getId() + "payment failed.");
+            System.out.println("Order #" + order.getId() + " payment failed.");
         }
         return successful;
     }

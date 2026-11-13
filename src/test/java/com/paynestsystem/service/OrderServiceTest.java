@@ -6,6 +6,7 @@ import com.paynestsystem.domain.Product;
 import com.paynestsystem.payment.CardPayment;
 import com.paynestsystem.payment.PaymentProcessor;
 
+import com.paynestsystem.payment.WalletPayment;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -47,5 +48,24 @@ public class OrderServiceTest {
         assertTrue(
                 orderService.checkout(order, new CardPayment())
         );
+    }
+    //Test unsuccessful checkout
+    @Test
+    void shouldReturnFalseWhenWalletCannotCoverOrderTotal(){
+        Customer customer = new Customer(
+                1, "Nolwazi", "nolwazi@example.com"
+        );
+        OrderService orderService = new OrderService(
+                new ReceiptPrinter(), new PaymentProcessor()
+        );
+        Order order = orderService.createOrder(1001, customer);
+        Product laptop = new Product(
+                1, "Laptop", new BigDecimal("12000.00")
+        );
+        order.addItem(laptop, 1);
+        WalletPayment wallet =  new WalletPayment(
+                new BigDecimal("500.00")
+        );
+        assertFalse(orderService.checkout(order, wallet));
     }
 }

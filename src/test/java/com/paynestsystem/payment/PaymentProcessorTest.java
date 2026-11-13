@@ -72,4 +72,20 @@ public class PaymentProcessorTest {
                 )
         );
     }
+
+    //Add failure-path test
+    @Test
+    void shouldReturnFalseWhenWalletBalanceIsInsufficient(){
+        PaymentProcessor paymentProcessor = new PaymentProcessor();
+        WalletPayment walletPayment = new WalletPayment(
+                new BigDecimal("500.00")
+        );
+        boolean result = processor.processPayment(
+                walletPayment, new BigDecimal("12500.00")
+        );
+        assertFalse(result);
+    }
 }
+
+
+
