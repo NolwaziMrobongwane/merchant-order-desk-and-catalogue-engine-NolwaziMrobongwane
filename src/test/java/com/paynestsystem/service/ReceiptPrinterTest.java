@@ -14,6 +14,9 @@ import com.paynestsystem.domain.Customer;
 import com.paynestsystem.domain.Order;
 import com.paynestsystem.domain.Product;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class ReceiptPrinterTest {
 
  private final ByteArrayOutputStream output =
@@ -67,8 +70,10 @@ public class ReceiptPrinterTest {
 
  assertTrue(receipt.contains("Order #: 1001"));
  assertTrue(receipt.contains("Customer: Nolwazi"));
- assertTrue(receipt.contains("Laptop x 1 = R12,000.00"));
- assertTrue(receipt.contains("Mouse x 2 = R500.00"));
- assertTrue(receipt.contains("Total: R12,500.00"));
+
+ NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.of("en", "ZA"));
+ assertTrue(receipt.contains("Laptop x 1 = " + currency.format(new BigDecimal("12000.00")) ));
+ assertTrue(receipt.contains("Mouse x 2 = " + currency.format(new BigDecimal("500.00")) ));
+ assertTrue(receipt.contains("Total: " + currency.format(new BigDecimal("12500.00")) ));
  }
 }
