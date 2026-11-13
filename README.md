@@ -1,21 +1,22 @@
-PayNest Merchant Order Desk and Catalogue Engine
-Project Description
+### PayNest Merchant Order Desk and Catalogue Engine
+## Project Description
 PayNest is a Java console application designed to demonstrate customer, product, order and payment management.
 
 The application allows merchants to create customer orders, calculate totals accurately, print receipts and process simulated payments using different payment methods.
 
 The project combines object-oriented programming, interfaces, polymorphism, validation and automated testing.
 
-Technologies Used
+## Technologies Used
 Java 21
 Apache Maven
 JUnit 5
 BigDecimal for monetary calculations
 IntelliJ IDEA
-Project Structure
+
+## Project Structure
 The application is organised into four packages.
 
-Domain —
+# Domain —
 com.paynestsystem.domain
 Customer — stores customer details.
 Product — represents products and prices.
@@ -26,7 +27,7 @@ com.paynestsystem.service
 OrderService — creates orders, coordinates receipt printing and manages checkout.
 ReceiptPrinter — displays formatted order receipts.
 
-Payment —
+# Payment —
 com.paynestsystem.payment
 PaymentMethod — interface defining common payment operations.
 CardPayment — simulates card payments.
@@ -61,7 +62,7 @@ PaymentMethod <|.. WalletPayment
 PaymentProcessor --> PaymentMethod : uses
 ```
 
-Multiple Payment Methods
+## Multiple Payment Methods
 PayNest supports three simulated payment methods:
 
 Card
@@ -71,22 +72,22 @@ All three implement the PaymentMethod interface.
 
 The PaymentProcessor accepts any implementation of this interface, demonstrating polymorphism without requiring separate checkout logic for each payment type.
 
-Checkout Integration
+## Checkout Integration
 The checkout process retrieves the total from the existing Order class and passes it to the payment processor.
 
 The application then displays whether payment processing succeeded or failed.
 
-Validation
+## Validation
 The application validates customer, product and order information, including positive IDs, nonblank required fields and valid quantities.
 
 Payment processing rejects null payment methods and amounts that are zero or negative.
 
-Monetary Accuracy
+## Monetary Accuracy
 BigDecimal is used for order and payment calculations to avoid floating-point precision problems.
 
 Receipts use South African Rand currency formatting.
 
-Design Decisions
+## Design Decisions
 Encapsulation: Domain fields are private, and the order’s item collection is exposed as an unmodifiable list.
 
 Separation of responsibilities: Domain classes handle order data and calculations, service classes coordinate operations, and payment classes implement payment behaviour.
@@ -95,12 +96,12 @@ Polymorphism: Different payment methods can be processed through the same Paymen
 
 Extensibility: Additional payment methods can be introduced by implementing PaymentMethod, without rewriting the existing order calculations.
 
-Why Use Interfaces Instead of a Single Mega-Method?
+## Why Use Interfaces Instead of a Single Mega-Method?
 Using the PaymentMethod interface allows PayNest to support different payment methods without putting all the payment logic into one large method filled with if/else or switch statements.
 Each payment class is responsible for its own behaviour, while PaymentProcessor works with them through a common interface. This makes the code easier to understand, test and maintain.
 It also allows new payment methods to be added without changing the existing payment processor, making the application more flexible as it grows.
 
-How to Build and Test
+### How to Build and Test
 Ensure Java 21 and Apache Maven are installed.
 
 From the project root, run:
@@ -110,7 +111,7 @@ This command compiles the project and runs the JUnit tests when Maven dependenci
 
 Test verification: All 17 automated tests passed using IntelliJ IDEA’s JUnit test runner. Maven command-line testing was previously blocked by an SSL certificate verification error (PKIX path building failed), so a successful Maven test run has not yet been confirmed.
 
-How to Run
+### How to Run
 From the project root:
 
 mvn compile
@@ -136,7 +137,7 @@ Amount: R12500.00
 Order #1001 has been processed successfully.
 Example output based on the application demonstration. Currency spacing and separators depend on the Java formatting configuration.
 
-Demonstrating the Payment Methods
+## Demonstrating the Payment Methods
 To demonstrate the application’s payment functionality:
 
 Open PayNestApplication.java in IntelliJ IDEA.
@@ -149,7 +150,7 @@ Verify that each payment method processes the same order total and displays the 
 The demonstration shows how different payment implementations can be used through the same interface without changing the existing order calculation logic.
 All payment methods are simulated; no real transactions take place.
 
-Automated Testing
+## Automated Testing
 The project contains tests covering:
 
 Order item and grand total calculations
@@ -162,10 +163,7 @@ Invalid payment methods and payment amounts
 OrderService checkout integration
 Latest IntelliJ test result: 17 tests passed, 0 failed.
 
-Future Improvements
+## Future Improvements
 Potential enhancements include persistent order storage, inventory management, real payment gateway integrations, transaction references and more detailed payment status tracking.
 
 Note: All payment methods are simulated. No real financial transactions are performed.
-
-Author:
-Nolwazi Mrobongwane
