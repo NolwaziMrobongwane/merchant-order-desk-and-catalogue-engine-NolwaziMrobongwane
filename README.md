@@ -88,7 +88,7 @@ The application then displays whether payment processing succeeded or failed.
 ## Validation
 The application validates customer, product and order information, including positive IDs, nonblank required fields and valid quantities.
 ### Shared Payment Validation:
-Payment amount validation is centralised in the PaymentMethod interface through the ```text validateAmount()``` default method.
+Payment amount validation is centralised in the PaymentMethod interface through the ```validateAmount()``` default method.
 
 This allows Card, EFT, Wallet and PaymentProcessor to reuse the same validation logic instead of repeating it in multiple classes. The method rejects null, zero and negative payment amounts.
 
